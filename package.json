@@ -14,6 +14,7 @@
 		"url": "https://github.com/praveen576232/Vscode_react_extention/issues"
 	},
 	"publisher": "praveend",
+	"icon": "screenshots/react-logo.png",
 	"categories": [
 		"Other"
 	],
