@@ -5,11 +5,12 @@ export function activate(context: vscode.ExtensionContext) {
 	
 	let disposable = vscode.commands.registerCommand('react-easy-snnipate.Es6_react_file_create', () => {
 		const folder = vscode.workspace.workspaceFolders;
+
 		if (folder) {
 
 			let tempfolder = folder[0].uri.path
 			const mypath = tempfolder.substring(1, tempfolder.length)
-
+               
 			
 			try {
 
@@ -17,13 +18,14 @@ export function activate(context: vscode.ExtensionContext) {
 					placeHolder: 'Filename or Folder_name/Filename ',
 					prompt: 'Note:your are in src directory', // An indication of what to do
 					value: '' // A value by default. In this case leave it empty
-				}).then(value => {
+				}).then(async value => {
 				
 					if (value) {
 					const fileinfo = 	fileNameFormater(value)
 					   if(fileinfo){
 					
 						const filename = fileinfo.filename
+						const error_msg = `A file or folder ${filename} is already exists at this location. Please choose a different name.`
 						const text =`import React from 'react'
 import './${filename}.css'
 		  
@@ -42,17 +44,68 @@ export default ${filename}
 
 							if(!fs.existsSync(path.join(mypath,`src/${fileinfo.file_path}`))){
 								fs.mkdirSync(path.join(mypath,`src/${fileinfo.file_path}`),{recursive:true})
+
+								fs.writeFileSync(path.join(mypath, `src/${fileinfo.file_path}`, fileinfo.filename_extention), text)
+								fs.writeFileSync(path.join(mypath, `src/${fileinfo.file_path}`, `${filename}.css`), '')
+							
+								openTab(path.join(mypath, `src/${fileinfo.file_path}`, fileinfo.filename_extention))
+							}else{
+                              const createdJSFilePath = path.join(mypath, `src/${fileinfo.file_path}`, fileinfo.filename_extention)
+                            const createdCSSFilePath = path.join(mypath, `src/${fileinfo.file_path}`, `${filename}.css`)
+							
+						
+							  
+                                if(fs.existsSync(createdJSFilePath)){
+                                       vscode.window.showErrorMessage(error_msg)
+								}
+								else {
+								   fs.writeFileSync(createdJSFilePath, text)
+							
+								
+									openTab(createdJSFilePath)
+								}
+								if(fs.existsSync(createdCSSFilePath)){
+									vscode.window.showErrorMessage(error_msg)
+								}else{
+									fs.writeFileSync(createdCSSFilePath, text)
+								}
 							}
-							fs.writeFileSync(path.join(mypath, `src/${fileinfo.file_path}`, fileinfo.filename_extention), text)
-						fs.writeFileSync(path.join(mypath, `src/${fileinfo.file_path}`, `${filename}.css`), '')
+
+
+						
+
 						}else{
-							fs.writeFileSync(path.join(mypath, "src", fileinfo.filename_extention), text)
-						fs.writeFileSync(path.join(mypath, "src", `${filename}.css`), '')
+							
+							
+
+						
+							const createdJSFilePath = path.join(mypath, 'src', fileinfo.filename_extention)
+                            const createdCSSFilePath = path.join(mypath, 'src', `${filename}.css`)
+							
+						
+						
+							  
+                                if(fs.existsSync(createdJSFilePath)){
+                                       vscode.window.showErrorMessage(error_msg)
+								}
+								else {
+								   fs.writeFileSync(createdJSFilePath, text)
+							
+								
+									openTab(createdJSFilePath)
+								}
+								if(fs.existsSync(createdCSSFilePath)){
+									vscode.window.showErrorMessage(error_msg)
+								}else{
+									fs.writeFileSync(createdCSSFilePath, text)
+								}
+
+							}
 						}
-					   }
+					   
 					}
 				});
-
+			
 			} catch (e) {
 				vscode.window.showErrorMessage(e)
 
@@ -118,4 +171,18 @@ var finalobj :obj={}
 	}
 }
 
+const openTab =async(path:string,) => {
+	if(path){
+
+		let uri = vscode.Uri.file(path)
+		await vscode.window.showTextDocument(uri, { preview: false });
+	}
+}
+
+const checkFileExist =(path:string) => {
+   return  fs.existsSync(path)
+}
+const createNewFile = (path:string) => {
+
+}
 export function deactivate() { }

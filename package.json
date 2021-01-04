@@ -1,7 +1,7 @@
 {
 	"name": "react-easy-snnipate",
 	"displayName": "react_easy_snnipate",
-	"description": "Create Es6 file formate with .css file",
+	"description": "Create .js file and .css file with Es7 snnipate",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -31,8 +31,8 @@
 		"keybindings":[
 			{
 				"command": "react-easy-snnipate.Es6_react_file_create",
-				"key": "alt+n",
-				"when": "editorTextFocus"
+				"key": "alt+n"
+			
 			}
 		]
 	
