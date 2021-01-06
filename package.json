@@ -2,7 +2,7 @@
 	"name": "react-easy-snnipate",
 	"displayName": "react_easy_snnipate",
 	"description": "Create .js file and .css file with Es7 snnipate",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.52.0"
 	},

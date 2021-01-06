@@ -67,7 +67,7 @@ export default ${filename}
 								if(fs.existsSync(createdCSSFilePath)){
 									vscode.window.showErrorMessage(error_msg)
 								}else{
-									fs.writeFileSync(createdCSSFilePath, text)
+									fs.writeFileSync(createdCSSFilePath, " ")
 								}
 							}
 
@@ -97,7 +97,7 @@ export default ${filename}
 								if(fs.existsSync(createdCSSFilePath)){
 									vscode.window.showErrorMessage(error_msg)
 								}else{
-									fs.writeFileSync(createdCSSFilePath, text)
+									fs.writeFileSync(createdCSSFilePath, "")
 								}
 
 							}
