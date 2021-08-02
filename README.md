@@ -1,5 +1,5 @@
-# react-easy-snnipate 
-This extention will be create a javascript file and .css fille so esaly and also write a rfce snnipate while createing the .js file.
+# react-easy-snippet
+This extention will be create a javascript file and .css fille so esaly and also write a rfce snippet while createing the .js file.
 
 
 
