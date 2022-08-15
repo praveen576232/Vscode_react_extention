@@ -107,7 +107,7 @@ export default ${filename}
 				});
 			
 			} catch (e) {
-				vscode.window.showErrorMessage(e)
+				vscode.window.showErrorMessage("Something went wrong!")
 
 			} 
 
