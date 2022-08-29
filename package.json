@@ -1,8 +1,8 @@
 {
-	"name": "react-easy-snnipate",
-	"displayName": "react_easy_snnipate",
-	"description": "Create .js file and .css file with Es7 snnipate",
-	"version": "0.0.3",
+	"name": "react-easy-snippet",
+	"displayName": "react_easy_snippet",
+	"description": "Create .js file and .css file with Es7 snippet",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.52.0"
 	},
@@ -19,20 +19,27 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:react-easy-snnipate.Es6_react_file_create"
+		"onCommand:react-easy-snippet.Es6_react_file_create",
+		"onCommand:react-easy-snippet.refactor"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "react-easy-snnipate.Es6_react_file_create",
+				"command": "react-easy-snippet.Es6_react_file_create",
 				"title": "rfce"
 			}
 		],
 		"keybindings":[
 			{
-				"command": "react-easy-snnipate.Es6_react_file_create",
+				"command": "react-easy-snippet.Es6_react_file_create",
 				"key": "alt+n"
+				
+			
+			},
+			{
+				"command": "react-easy-snippet.refactor",
+				"key": "alt+q"
 			
 			}
 		]
